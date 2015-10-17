@@ -50,9 +50,7 @@ tar -xf ffmpeg-2.8.1.tar
 cd ffmpeg-2.8.1
 echo "Running configure" | indent
 
-./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include"/
-			 --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl/
-			  --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
+./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include" --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
 
 echo "Running make with target install" | indent
 make install >/dev/null 2>&1
