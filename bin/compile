@@ -66,6 +66,7 @@ make distclean > /dev/null 2>&1
 
 echo "-----> Caching build."
 mkdir -p $2
-cp -R "$BUILD_DIR/" $2
+cp -R -v "$BUILD_DIR/" $2
+ls 
 ls $2
 ls $2/bin
