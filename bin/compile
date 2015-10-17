@@ -10,11 +10,10 @@ mkdir -p "$1/vendor"
 export BUILD_DIR=$1"/vendor"
 export PATH="$BUILD_DIR/bin:"$PATH
 echo "-----> Building in $BUILD_DIR"
-ls $2
-ls $2/bin
+
 if [ -f "$2/vendor/bin/yasm" ] && [ -f "$2/vendor/bin/lame" ] && [ -f "$2/vendor/bin/ffmpeg" ]; then
 	echo "Using cached build." | indent
-	cp -R "$2/" $1
+	cp -R -v "$2/vendor" $1
 	exit 0
 fi	
 echo "-----> Starting yasm compilation"
@@ -32,37 +31,37 @@ echo "Running make with target distclean" | indent
 make distclean > /dev/null 2>&1
 
 
-# begin lame
+begin lame
 
-# echo "-----> Starting lame compilation"
-# echo "Downloading lame-3.99.5.tar.gz" | indent
-# wget --quiet https://downloads.sourceforge.net/sourceforge/lame/lame-3.99.5.tar.gz
-# echo "Unpacking lame" | indent
-# tar -xf lame-3.99.5.tar.gz
-# cd lame-3.99.5
-# echo "Running configure" | indent
-# ./configure --disable-dependency-tracking --disable-debug --prefix="$BUILD_DIR" --enable-nasm >/dev/null 2>&1
-# echo "Running make with target install" | indent
-# make install >/dev/null 2>&1
-# echo "Running make with target distclean" | indent
-# make distclean > /dev/null 2>&1
+echo "-----> Starting lame compilation"
+echo "Downloading lame-3.99.5.tar.gz" | indent
+wget --quiet https://downloads.sourceforge.net/sourceforge/lame/lame-3.99.5.tar.gz
+echo "Unpacking lame" | indent
+tar -xf lame-3.99.5.tar.gz
+cd lame-3.99.5
+echo "Running configure" | indent
+./configure --disable-dependency-tracking --disable-debug --prefix="$BUILD_DIR" --enable-nasm >/dev/null 2>&1
+echo "Running make with target install" | indent
+make install >/dev/null 2>&1
+echo "Running make with target distclean" | indent
+make distclean > /dev/null 2>&1
 
-# begin ffmpeg
-# echo "-----> Starting ffmpeg compilation"
-# echo "Downloading ffmpeg-2.8.1.tar.bz2" | indent
-# wget --quiet https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2 
-# echo "Unpacking ffmpeg" | indent
-# bzip2 -d ffmpeg-2.8.1.tar.bz2
-# tar -xf ffmpeg-2.8.1.tar
-# cd ffmpeg-2.8.1
-# echo "Running configure" | indent
+begin ffmpeg
+echo "-----> Starting ffmpeg compilation"
+echo "Downloading ffmpeg-2.8.1.tar.bz2" | indent
+wget --quiet https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2 
+echo "Unpacking ffmpeg" | indent
+bzip2 -d ffmpeg-2.8.1.tar.bz2
+tar -xf ffmpeg-2.8.1.tar
+cd ffmpeg-2.8.1
+echo "Running configure" | indent
 
-# ./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include" --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
+./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include" --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
 
-# echo "Running make with target install" | indent
-# make install >/dev/null 2>&1
-# echo "Running make with target distclean" | indent
-# make distclean > /dev/null 2>&1 
+echo "Running make with target install" | indent
+make install >/dev/null 2>&1
+echo "Running make with target distclean" | indent
+make distclean > /dev/null 2>&1 
 
 echo "-----> Caching build."
 mkdir -p $2
