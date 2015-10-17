@@ -31,7 +31,7 @@ echo "Running make with target distclean" | indent
 make distclean > /dev/null 2>&1
 
 
-begin lame
+# begin lame
 
 echo "-----> Starting lame compilation"
 echo "Downloading lame-3.99.5.tar.gz" | indent
@@ -46,7 +46,8 @@ make install >/dev/null 2>&1
 echo "Running make with target distclean" | indent
 make distclean > /dev/null 2>&1
 
-begin ffmpeg
+# begin ffmpeg
+
 echo "-----> Starting ffmpeg compilation"
 echo "Downloading ffmpeg-2.8.1.tar.bz2" | indent
 wget --quiet https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2 
