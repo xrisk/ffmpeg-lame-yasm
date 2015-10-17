@@ -13,7 +13,7 @@ echo "-----> Building in $BUILD_DIR"
 
 if [ -f "$2/vendor/bin/yasm" ] && [ -f "$2/vendor/bin/lame" ] && [ -f "$2/vendor/bin/ffmpeg" ]; then
 	echo "Using cached build." | indent
-	cp -R -v "$2/vendor" $1
+	cp -R  "$2/vendor" $1
 	exit 0
 fi	
 echo "-----> Starting yasm compilation"
@@ -65,4 +65,4 @@ make distclean > /dev/null 2>&1
 
 echo "-----> Caching build."
 mkdir -p $2
-cp -R -v "$BUILD_DIR/" $2
+cp -R "$BUILD_DIR/" $2
