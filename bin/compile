@@ -48,23 +48,24 @@ echo "Running make with target distclean" | indent
 make distclean > /dev/null 2>&1
 
 # begin ffmpeg
-echo "-----> Starting ffmpeg compilation"
-echo "Downloading ffmpeg-2.8.1.tar.bz2" | indent
-wget --quiet https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2 
-echo "Unpacking ffmpeg" | indent
-bzip2 -d ffmpeg-2.8.1.tar.bz2
-tar -xf ffmpeg-2.8.1.tar
-cd ffmpeg-2.8.1
-echo "Running configure" | indent
+# echo "-----> Starting ffmpeg compilation"
+# echo "Downloading ffmpeg-2.8.1.tar.bz2" | indent
+# wget --quiet https://ffmpeg.org/releases/ffmpeg-2.8.1.tar.bz2 
+# echo "Unpacking ffmpeg" | indent
+# bzip2 -d ffmpeg-2.8.1.tar.bz2
+# tar -xf ffmpeg-2.8.1.tar
+# cd ffmpeg-2.8.1
+# echo "Running configure" | indent
 
-./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include" --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
+# ./configure  --prefix="$BUILD_DIR" --enable-libmp3lame --extra-cflags="-I$BUILD_DIR/include" --extra-ldflags="-L$BUILD_DIR/lib" --enable-shared --enable-pthreads --enable-gpl --enable-version3 --enable-hardcoded-tables --enable-avresample >/dev/null 2>&1
 
-echo "Running make with target install" | indent
-make install >/dev/null 2>&1
-echo "Running make with target distclean" | indent
-make distclean > /dev/null 2>&1 
+# echo "Running make with target install" | indent
+# make install >/dev/null 2>&1
+# echo "Running make with target distclean" | indent
+# make distclean > /dev/null 2>&1 
 
 echo "-----> Caching build."
+mkdir -p $2
 cp -R "$BUILD_DIR/" $2
 ls $2
 ls $2/bin
