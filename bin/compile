@@ -34,18 +34,18 @@ make distclean > /dev/null 2>&1
 
 # begin lame
 
-echo "-----> Starting lame compilation"
-echo "Downloading lame-3.99.5.tar.gz" | indent
-wget --quiet https://downloads.sourceforge.net/sourceforge/lame/lame-3.99.5.tar.gz
-echo "Unpacking lame" | indent
-tar -xf lame-3.99.5.tar.gz
-cd lame-3.99.5
-echo "Running configure" | indent
-./configure --disable-dependency-tracking --disable-debug --prefix="$BUILD_DIR" --enable-nasm >/dev/null 2>&1
-echo "Running make with target install" | indent
-make install >/dev/null 2>&1
-echo "Running make with target distclean" | indent
-make distclean > /dev/null 2>&1
+# echo "-----> Starting lame compilation"
+# echo "Downloading lame-3.99.5.tar.gz" | indent
+# wget --quiet https://downloads.sourceforge.net/sourceforge/lame/lame-3.99.5.tar.gz
+# echo "Unpacking lame" | indent
+# tar -xf lame-3.99.5.tar.gz
+# cd lame-3.99.5
+# echo "Running configure" | indent
+# ./configure --disable-dependency-tracking --disable-debug --prefix="$BUILD_DIR" --enable-nasm >/dev/null 2>&1
+# echo "Running make with target install" | indent
+# make install >/dev/null 2>&1
+# echo "Running make with target distclean" | indent
+# make distclean > /dev/null 2>&1
 
 # begin ffmpeg
 # echo "-----> Starting ffmpeg compilation"
@@ -66,6 +66,8 @@ make distclean > /dev/null 2>&1
 
 echo "-----> Caching build."
 mkdir -p $2
+echo $BUILD_DIR
+echo $2
 cp -R -v "$BUILD_DIR/" $2
 ls 
 ls $2
