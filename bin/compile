@@ -10,8 +10,8 @@ mkdir -p "$1/vendor"
 export BUILD_DIR=$1"/vendor"
 export PATH="$BUILD_DIR/bin:"$PATH
 echo "-----> Building in $BUILD_DIR"
-
-if [ -f $2/bin/yasm ] && [ -f $2/bin/lame ] && [ -f $2/bin/ffmpeg ]; then
+ls $2/bin
+if [ -f "$2/bin/yasm" ] && [ -f "$2/bin/lame" ] && [ -f "$2/bin/ffmpeg" ]; then
 	echo "Using cached build." | indent
 	cp -R "$2/" $1
 	exit 0
