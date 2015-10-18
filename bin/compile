@@ -11,6 +11,8 @@ export BUILD_DIR=$1"/vendor"
 export PATH="$BUILD_DIR/bin:"$PATH
 echo "-----> Building in $BUILD_DIR"
 
+rm -rfv $2/vendor
+
 if [ -f "$2/vendor/bin/yasm" ] && [ -f "$2/vendor/bin/lame" ] && [ -f "$2/vendor/bin/ffmpeg" ]; then
 	echo "Using cached build." | indent
 	cp -R  "$2/vendor" $1
